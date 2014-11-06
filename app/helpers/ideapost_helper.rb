@@ -1,0 +1,2 @@
+module IdeapostHelper
+end

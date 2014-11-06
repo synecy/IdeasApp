@@ -1,0 +1,47 @@
+// Place all the styles related to the landing controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+i.idea-content-empty {
+  font-size: 3em;
+}
+
+h2 {
+  margin: 0;
+}
+
+a.btn-create {
+  text-decoration: none;
+  margin-top: 2%;
+}
+
+a.btn-idea-title {
+  text-decoration: none;
+  color: #333;
+}
+
+a.btn-vote {
+  text-decoration: none;
+}
+
+.content-list {
+  margin: 1em;
+  padding-top: 1.5em;
+  padding-bottom: 1.5em;
+  //width: 100%;
+}
+
+.title-icon {
+  font-size: 0.8em;
+}
+
+.idea-title {
+  color: rgba(0, 0, 0, 0.77);
+  font-size: 20px;
+  line-height: 4em;
+}
+
+.idea-content-empty {
+  padding: 2em;
+}
+

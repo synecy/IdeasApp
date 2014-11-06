@@ -1,0 +1,37 @@
+<div class="header-top center">
+  <div class="header-title">
+    <h1><i class="icon-material-deeporange icon-material-flash-on title-icon"></i> ideas.txt</h1>
+  </div>
+
+  <div class="header-action">
+    <%= link_to ("<i class=\"icon-material-orange icon-material-home\"></i>").html_safe, {controller: "landing", action: "index"}, method: :get, class: "btn-create center" %>
+  </div>
+</div>
+
+<% if flash[:warning] %>
+  <div class="alert alert-warning shadow-z-2 center">
+    <b>Warning</b>: <%= flash[:warning] %>
+  </div>
+<% elsif flash[:error] %>
+  <div class="alert alert-danger shadow-z-2 center">
+    <b>Error</b>: <%= flash[:error] %>
+  </div>
+<% elsif flash[:success] %>
+  <div class="alert alert-success shadow-z-2 center">
+    <b>Success</b>: <%= flash[:success] %>
+  </div>
+<% elsif flash[:info] %>
+  <div class="alert alert-info shadow-z-2 center">
+    <b>Info</b>: <%= flash[:info] %>
+  </div>
+<% end %>
+
+<div class="well idea_box center-notext">
+  <h1><%= @idea_title %></h1>
+  <% @idea_content.each do |entry| %>
+    <p>- <%= entry["idea_description"] %></p>
+  <% end %>
+</div>
+
+
+

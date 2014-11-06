@@ -1,0 +1,83 @@
+<script type="text/javascript">
+  var field_count = 3;
+</script>
+
+<div class="header-top center">
+  <div class="header-title">
+    <h1><i class="icon-material-deeporange icon-material-flash-on title-icon"></i> ideas.txt</h1>
+  </div>
+
+  <div class="header-action">
+    <%= link_to ("<i class=\"icon-material-orange icon-material-home\"></i>").html_safe, {controller: "landing", action: "index"}, method: :get, class: "btn-create center" %>
+  </div>
+</div>
+
+<% if flash[:warning] %>
+  <div class="alert alert-warning shadow-z-2 center">
+    <b>Warning</b>: <%= flash[:warning] %>
+  </div>
+<% elsif flash[:error] %>
+  <div class="alert alert-danger shadow-z-2 center">
+    <b>Error</b>: <%= flash[:error] %>
+  </div>
+<% elsif flash[:success] %>
+  <div class="alert alert-success shadow-z-2 center">
+    <b>Success</b>: <%= flash[:success] %>
+  </div>
+<% elsif flash[:info] %>
+  <div class="alert alert-info shadow-z-2 center">
+    <b>Info</b>: <%= flash[:info] %>
+  </div>
+<% end %>
+
+
+<%= form_tag(url_for_options = {action: "new"}, options = {id: 'post_id', onSubmit: 'return validateIdeaForm();', class: 'well login_box center-notext'}) do %>
+  Title:
+  <br>
+  <%= text_field_tag :idea_title, '', placeholder: 'Title', class: 'form-control login_input_limiter' %>
+  <br>
+  Descriptions:
+  <br>
+  <div id="description_field">
+    <%= text_field_tag :desc0, '', placeholder: '- description', class: 'form-control login_input_limiter' %>
+    <%= text_field_tag :desc1, '', placeholder: '- description', class: 'form-control login_input_limiter' %>
+    <%= text_field_tag :desc2, '', placeholder: '- description', class: 'form-control login_input_limiter' %>
+  </div>
+  <br>
+  <div id="description_addbtn">
+    <a href="javascript:addDescriptionField()" class="btn-decoration" > <i class="icon-material-bluegrey icon-material-add-box add-fields"></i></a>
+    <br>
+    <br>
+  </div>
+  <!--
+  Private:
+  <div class="checkbox">
+    <label>
+      <%= check_box_tag 'secret_post', 'Private', false %><span class="check"></span>
+    </label>
+  </div>
+  <br>
+  <br>
+  -->
+  <%= submit_tag("Post", value: 'post', class: 'btn btn-primary' ) %>
+<% end %>
+
+<script type="text/javascript">
+  function addDescriptionField() {
+    if ( field_count < 10 ) {
+      $( "#description_field" ).append( "<div class=\"form-control-wrapper\"><input class=\"form-control login_input_limiter empty\" id=\"desc" + field_count + "\" name=\"desc" + field_count + "\" placeholder=\"- description\" value=\"\" type=\"text\"><span class=\"material-input\"></span></div>" );
+      field_count = field_count + 1;
+    } else {
+      $( "#description_addbtn" ).remove();
+    }
+  }
+
+  function validateIdeaForm() {
+    if ( $('#idea_title').val().length < 1 ) {
+      sweetAlert("I'm sorry...", "I'm afraid I can't do that (You need a title!)", "error");
+      return false;
+    }
+    return true;
+  }
+</script>
+

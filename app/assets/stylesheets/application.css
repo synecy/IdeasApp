@@ -1,0 +1,77 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ *= require bootstrap-material-design
+ *= require sweet-alert
+ */
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium);
+
+h1 {
+  color: #333;
+  font-size: 3.5em;
+  font-weight: 300; 
+}
+
+h2 {
+  color: #333;
+  font-weight: 300; 
+  margin: 0;
+}
+
+body {
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.center-notext {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  vertical-align: middle;
+}
+
+.alert {
+  max-width: 30%;
+  min-width: 10%;
+  padding: 1em;
+  margin-top: 0.5em;
+  text-align: left;
+}
+
+.header-top {
+  overflow: hidden;
+  height: 9em;
+}
+
+.header-title {
+  width: 50%;
+  height: 100%;
+  float: left;
+}
+
+.header-action {
+  width: 50%;
+  height: 100%;
+  font-size: 6em;
+  float: right;
+}

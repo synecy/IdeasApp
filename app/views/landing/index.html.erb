@@ -1,0 +1,90 @@
+<script type="text/javascript">
+
+  $(document).ready(function() {
+    $('a[data-remote]').on('ajax:success', ajaxResponseSuccess);
+    $('a[data-remote]').on('ajax:error', ajaxResponseFailed);
+  });
+
+  function ajaxResponseSuccess(data, status, xhr) {
+    if ( status.vote_value == 1 ) {
+      upvote(status.uuid);
+    }
+    if ( status.vote_value == -1 ) {
+      downvote(status.uuid);
+    }
+  }
+
+  function ajaxResponseFailed(xhr, status, error) {
+    sweetAlert("Oops..", "Something went wrong. Try again later.", "error");
+  }
+
+  function upvote(uuid) {
+    var newVotes = parseInt( $('#' + uuid + '_votes').text() ) + 1;
+    $('#' + uuid + '_votes').text( newVotes );
+    sweetAlert("+1", "", "success");
+  }
+  function downvote(uuid) {
+    var newVotes = parseInt( $('#' + uuid + '_votes').text() ) - 1;
+    $('#' + uuid + '_votes').text( newVotes );
+    sweetAlert("-1", "", "success");
+  }
+
+</script>
+
+<div class="header-top center">
+  <div class="header-title">
+    <h1><i class="icon-material-deeporange icon-material-flash-on title-icon"></i> ideas.txt</h1>
+  </div>
+
+  <div class="header-action">
+    <%= link_to ("<i class=\"icon-material-orange icon-material-add-circle\"></i>").html_safe, {controller: "dashboard", action: "index"}, method: :get, class: "btn-create center" %>
+  </div>
+</div>
+
+<% if flash[:warning] %>
+  <div class="alert alert-warning shadow-z-2 center">
+    <b>Warning</b>: <%= flash[:warning] %>
+  </div>
+<% elsif flash[:error] %>
+  <div class="alert alert-danger shadow-z-2 center">
+    <b>Error</b>: <%= flash[:error] %>
+  </div>
+<% elsif flash[:success] %>
+  <div class="alert alert-success shadow-z-2 center">
+    <b>Success</b>: <%= flash[:success] %>
+  </div>
+<% elsif flash[:info] %>
+  <div class="alert alert-info shadow-z-2 center">
+    <b>Info</b>: <%= flash[:info] %>
+  </div>
+<% end %>
+
+<div class="content-list well">
+  <div class="list-group">
+    <% @idea_content.each do |entry| %>
+      <div class="list-group-item">
+        <div class="row-action-primary">
+          <%= link_to ("<i class=\"icon icon-material-arrow-drop-up\"></i>").html_safe, {controller: "landing", action: "vote", remote: true, uuid: entry["idea_uuid"], vote_value: 1}, class: "btn-vote" %>
+          <div class="votes center"><b id='<%=entry["idea_uuid"]%>_votes'><%=entry["idea_votes"]%></b></div>
+          <%= link_to ("<i class=\"icon icon-material-arrow-drop-down\"></i>").html_safe, {controller: "landing", action: "vote", remote: true, uuid: entry["idea_uuid"], vote_value: -1}, class: "btn-vote" %>
+        </div>
+        <h4 class="idea-title"> <%= link_to entry["idea_entry"], {controller: "ideapost", action: "index", id: entry["idea_uuid"]}, method: :get, class: "btn-idea-title" %> </h4>
+      </div>
+      <br>
+      <div class="list-group-separator"></div>
+      <br>
+    <% end %>
+    <% if @idea_content.empty? %>
+      <div class="idea-content-empty center">
+        <i class="icon-material-bluegrey icon-material-clear idea-content-empty"></i><br>
+        <h2>Looks pretty empty here! That means you can be the FIRST to share an idea!</h2><br>
+        <h2>Just click that large orange PLUS button up there to begin!</h2>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
+
+
+
