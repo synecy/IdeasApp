@@ -5,7 +5,7 @@ Ruby on Rails entry for 48 hour app development competition.
 Very simple rails application for posting ideas and getting feedback.
 In the first version of this application, idea feedback is entirely based on up and down votes, similar to services such as reddit.
 
-![My image](http://i.imgur.com/xcrHXGK.png)
+[![My image](http://i.imgur.com/xcrHXGK.png)](http://intense-sands-6671.herokuapp.com/)
 
 
 ### 3rd Party
